@@ -1,7 +1,13 @@
-count=9
-if [ $count -gt 10 ]
-then
-    echo "count is greater than 10"
-else
-    echo "count is less than 10"
-fi
+echo -e "Enter 1st number : \c"
+read a
+
+echo -e "Enter 2nd number : \c"
+read b
+
+echo  "$a,$b"
+
+echo "$b and $a"
+
+echo "Numbers reveresed : "
+
+echo "$(echo $a|rev) and $(echo $b|rev)"
