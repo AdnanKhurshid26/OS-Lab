@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "stat.h": "c",
+        "random": "c",
+        "array": "c",
+        "deque": "c",
+        "vector": "c",
+        "string_view": "c",
+        "iosfwd": "cpp"
+    }
+}
