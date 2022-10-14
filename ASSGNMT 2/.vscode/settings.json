@@ -6,6 +6,8 @@
         "deque": "c",
         "vector": "c",
         "string_view": "c",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "wait.h": "c",
+        "stdlib.h": "c"
     }
 }

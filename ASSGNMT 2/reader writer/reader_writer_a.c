@@ -86,6 +86,8 @@ int main()
         sem_post(sem);
         number = (rand() % (3 - 1 + 1)) + 2;
         sleep(number);
+        if(wcount) printf("Writer wants to write again\n");
+        
     }
 
     wait(NULL);
