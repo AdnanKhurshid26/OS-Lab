@@ -22,7 +22,7 @@ void displayData(char *processName, int iteration)
 
 int main()
 {
- 
+
     sem_unlink("semx");
     semx = sem_open("semx", O_CREAT, 0777, 1);
     sem_unlink("semy");
@@ -30,9 +30,9 @@ int main()
     sem_unlink("semz");
     semz = sem_open("semz", O_CREAT, 0777, 0);
 
-    int pidX ;
-    int pidY ;
-    int pidZ ;
+    int pidX;
+    int pidY;
+    int pidZ;
 
     pidX = fork();
     if (pidX == 0)
@@ -61,9 +61,11 @@ int main()
                 sem_post(semz);
             }
         }
-        else{
+        else
+        {
             pidZ = fork();
-            if(pidZ == 0){
+            if (pidZ == 0)
+            {
                 srand(time(0) + getpid());
                 for (int i = 0; i < ITERATIONS; i++)
                 {

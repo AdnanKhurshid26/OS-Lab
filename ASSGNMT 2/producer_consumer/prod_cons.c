@@ -1,25 +1,16 @@
 #include <stdio.h>
-/* for shm_* and mmap() */
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <fcntl.h>
-/* for getpid() */
 #include <unistd.h>
-/* exit() */
 #include <stdlib.h>
-/* for sem_* functions */
 #include <sys/stat.h>
 #include <semaphore.h>
-/* for seeding time() */
 #include <time.h>
-/* for wait function */
 #include <sys/wait.h>
 
-/* name of the semaphore */
-#define SEMOBJ_NAME "/mutex"
 
-/* maximum number of seconds to sleep between each loop operation */
-#define MAX_SLEEP_SECS 3
+#define SEMOBJ_NAME "/mutex"
 
 /* maximum buffer size */
 #define BUFFER_SIZE 50

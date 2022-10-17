@@ -182,12 +182,8 @@ int main()
         buf->consume_complete = 1;
         exit(0);
     }
-    wait(NULL);
 
-    while (buf->produce_complete == 0 || buf->consume_complete == 0)
-    {
-        sleep(1);
-    }
+    while (wait(NULL) > 0);
 
     /* freeing the reference to the semaphore */
     sem_close(bufmutex);

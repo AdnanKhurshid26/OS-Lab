@@ -9,12 +9,11 @@
 #include <time.h>
 #include <sys/wait.h>
 
-sem_t *sem;
-
 int main()
 {
 
     int *var = (int *)mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
+    int *writing = (int *)mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
 
     if (var == MAP_FAILED)
     {
@@ -23,8 +22,6 @@ int main()
     }
 
     int readers;
-    sem_unlink("/sem");
-    sem = sem_open("/sem", O_CREAT, 0777, 1);
     printf("Enter number of readers : ");
     scanf("%d", &readers);
 
@@ -59,10 +56,10 @@ int main()
 
                 while (rcount--)
                 {
-                    sem_wait(sem);
-                    sem_post(sem);
+                    while (*writing)
+                        ;
                     printf("Reader %d read %d\n", r, *var);
-                    int number = (rand() % (5 - 1 + 1)) + 1;
+                    int number = (rand() % (12 - 2 + 1)) + 1;
                     sleep(number);
                 }
 
@@ -70,27 +67,25 @@ int main()
             }
         }
 
-        while(wait(NULL)>0);
+        while (wait(NULL) > 0)
+            ;
         return 0;
     }
 
     while (wcount--)
     {
-        sem_wait(sem);
+        (*writing) = 1;
         srand(0);
         int x = rand() % 100;
         *var += x;
         printf("Writer writing %d\n", *var);
-        int number = (rand() % (5 - 2 + 1)) + 2;
+        sleep(2);
+        (*writing) = 0;
+        int number = (rand() % (8 - 1 + 1)) + 2;
         sleep(number);
-        sem_post(sem);
-        number = (rand() % (3 - 1 + 1)) + 2;
-        sleep(number);
-        if(wcount) printf("Writer wants to write again\n");
-        
     }
 
     wait(NULL);
-
+    
     return 0;
 }

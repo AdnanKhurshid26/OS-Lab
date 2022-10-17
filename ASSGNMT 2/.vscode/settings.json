@@ -8,6 +8,7 @@
         "string_view": "c",
         "iosfwd": "cpp",
         "wait.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "*.tcc": "cpp"
     }
 }

@@ -7,19 +7,16 @@
 
 #define ITERATIONS 10
 
+void displayData(char *processName, int iteration)
+{
 
-void displayData(char* processName, int iteration){
-       
-    printf("Process  : %s  | PID : %d | Iteration : %d\n", processName, getpid(), iteration+1);
-    int x = rand() %5;
+    printf("Process  : %s  | PID : %d | Iteration : %d\n", processName, getpid(), iteration + 1);
+    int x = rand() % 5;
     sleep(x);
 }
 
 int main()
 {
-    // srand(time(NULL));
-
-
 
     int pidX = -1;
     int pidY = -1;
@@ -28,18 +25,20 @@ int main()
     if (pidX == 0)
     {
         // Inside child X
-          srand(time(0)+getpid());
-        for (int i = 0; i < ITERATIONS; i++){
-          
+        srand(time(0) + getpid());
+        for (int i = 0; i < ITERATIONS; i++)
+        {
+
             displayData("X", i);
         }
     }
     else
     {
         pidY = fork();
-        if (pidY == 0){
+        if (pidY == 0)
+        {
             // Inside Child Y
-            srand(time(0)+getpid());
+            srand(time(0) + getpid());
             for (int i = 0; i < ITERATIONS; i++)
             {
                 displayData("Y", i);
@@ -47,7 +46,8 @@ int main()
         }
     }
 
-    for (int i = 1; i <= 2; i++){
+    for (int i = 1; i <= 2; i++)
+    {
         wait(NULL);
     }
 

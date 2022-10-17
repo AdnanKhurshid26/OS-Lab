@@ -76,7 +76,7 @@ int main()
                         srand(time(0));
                         int number = (rand() % (12 - 6 + 1)) + 6;
                         sleep(number);
-                        printf("Writer %d wants to write again\n", w);
+                        // printf("Writer %d wants to write again\n", w);
                     }
                 }
                 return 0;
@@ -120,7 +120,6 @@ int main()
                 return 0;
             }
         }
-    
 
         while (wait(NULL) > 0)
             ;

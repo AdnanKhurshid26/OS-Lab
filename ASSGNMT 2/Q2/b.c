@@ -10,7 +10,6 @@
 #define ITERATIONS 10
 sem_t *sem1;
 
-
 void displayData(char *processName, int iteration)
 {
 
@@ -21,15 +20,9 @@ void displayData(char *processName, int iteration)
 
 int main()
 {
-    // srand(time(NULL));
-
-
-    // sem_init(&mutex, 1, 0);
 
     sem_unlink("sem1");
     sem1 = sem_open("sem1", O_CREAT, 0777, 0);
-
- 
 
     int pidX = -1;
     int pidY = -1;
@@ -44,7 +37,6 @@ int main()
 
             sem_wait(sem1);
             displayData("X", i);
-
         }
     }
     else
@@ -56,7 +48,7 @@ int main()
             srand(time(0) + getpid());
             for (int i = 0; i < ITERATIONS; i++)
             {
-              
+
                 displayData("Y", i);
                 sem_post(sem1);
             }

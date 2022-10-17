@@ -36,11 +36,13 @@ sem_t **self;
 void eat(int i)
 {
 	// eating
+	sem_wait(mutex);
 	printf("Philosopher %d has taken chopstick %d and %d\n", i + 1, (i + N - 1) % N + 1, i + 1);
 	printf("Philosopher %d is Eating\n", i + 1);
 	sleep(3);
 	printf("Philosopher %d has finished eating\n", i + 1);
 	printf("Philosopher %d has put down chopstick %d and %d\n", i + 1, (i + N - 1) % N + 1, i + 1);
+	sem_post(mutex);
 }
 
 void test(int i)
